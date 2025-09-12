@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -15,7 +14,7 @@ datasource db {
 }
 
 model Superhero {
-  id                 Int                @id @default(autoincrement())
+  id                 Int               @id @default(autoincrement())
   nickname           String
   real_name          String
   origin_description String
@@ -25,8 +24,8 @@ model Superhero {
 }
 
 model SuperheroImage {
-  id           Int       @id @default(autoincrement())
-  image_url    String
-  superhero    Superhero @relation(fields: [superheroId], references: [id], onDelete: Cascade)
-  superheroId  Int
+  id          Int       @id @default(autoincrement())
+  superhero   Superhero @relation(fields: [superheroId], references: [id], onDelete: Cascade)
+  superheroId Int
+  image_url   String
 }
