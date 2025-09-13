@@ -29,10 +29,12 @@ export default function Home() {
   return (
     <div className={styles.pageCard}>
       <Header setCreate={setCreate} />
-      {create && <HeroFrom />}
-      {heroes.map((hero) => (
-        <HeroCard key={hero.id} hero={hero} />
-      ))}
+      {create && <HeroFrom setCreate={setCreate} />}
+      <div className={styles.cardConteiner}>
+        {heroes.map((hero) => (
+          <HeroCard key={hero.id} hero={hero} />
+        ))}
+      </div>
     </div>
   );
 }

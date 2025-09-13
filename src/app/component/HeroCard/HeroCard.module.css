@@ -19,7 +19,7 @@
   border-bottom-right-radius: 10px; */
 }
 
-.buttonWrap{
+.buttonWrap {
   display: flex;
   gap: 8px;
 }
@@ -30,10 +30,12 @@
   border-radius: 3px;
   height: 30px;
   background-color: #393126;
+  text-decoration: none;
   color: #f9f0e2;
 }
 
 .details:hover {
-  border: 1px solid #9B6A00;
-  background-color: #9B6A00;
+  border: 1px solid #9b6a00;
+  background-color: #9b6a00;
 }
+

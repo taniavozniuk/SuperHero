@@ -1,0 +1,28 @@
+.heroCard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wrap {
+  display: flex;
+  gap: 20px;
+}
+
+.nickName {
+  align-items: center;
+  text-align: center;
+}
+
+.image {
+  width: 300px;
+}
+
+.details {
+  width: 100%;
+  border: 1px solid #393126;
+  border-radius: 3px;
+  height: 30px;
+  background-color: #393126;
+  text-decoration: none;
+  color: #f9f0e2;
+}

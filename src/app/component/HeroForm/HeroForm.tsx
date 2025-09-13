@@ -3,7 +3,11 @@ import styles from "./HeroForm.module.css";
 import { heroPost } from "@/app/api/superheroes/api";
 import { HeroCreate } from "@/type/HeroCreate";
 
-const HeroFrom = () => {
+interface HeroFromProps {
+  setCreate: (value: boolean) => void;
+}
+
+const HeroFrom: React.FC<HeroFromProps> = ({ setCreate }) => {
   //#region Nickname
   const [nickName, setNickName] = useState("");
   const [hasNickNameError, setHasNickNameError] = useState(false);
@@ -33,6 +37,8 @@ const HeroFrom = () => {
   const [hasPhraseError, setHasPhraseError] = useState(false);
   const [errorPhrase, setErrorPhrase] = useState("");
   //#endregion
+
+  const [file, setFile] = useState<File | null>(null);
 
   const handleNickNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -109,13 +115,14 @@ const HeroFrom = () => {
       images: [],
     };
 
-    const createdHero = await heroPost(heroData);
+    const createdHero = await heroPost(heroData, file);
     if (createdHero) {
       setNickName("");
       setRealName("");
       setDescription("");
       setSuperpower("");
       setPhrase("");
+      setFile(null);
       alert("Hero created successfully!");
     }
 
@@ -126,9 +133,34 @@ const HeroFrom = () => {
     setHasPhraseError(false);
   };
 
+  const handleClear = () => {
+    setNickName("");
+    setRealName("");
+    setDescription("");
+    setSuperpower("");
+    setPhrase("");
+    setFile(null);
+    setHasNickNameError(false);
+    setHasRealNameError(false);
+    setHasDescriptionError(false);
+    setHasSuperpowerError(false);
+    setHasPhraseError(false);
+  };
+
   return (
     <form className={styles.form} onSubmit={handleCreate}>
-      <h2 className={styles.fotmTitle}>Create a superhero</h2>
+      <div className={styles.wrap}>
+        <h2 className={styles.fotmTitle}>Create a superhero</h2>
+        <button
+          className={styles.close}
+          onClick={() => {
+            setCreate(false);
+          }}
+        >
+          x
+          {/* <img src={Close.src} alt="close" className={styles.closeIcon} /> */}
+        </button>
+      </div>
 
       <div className={styles.createHero}>
         <div className={styles.fieldInfo}>
@@ -144,8 +176,10 @@ const HeroFrom = () => {
               onChange={handleNickNameChange}
               placeholder="Nickname"
               className={styles.inputInfo}
-              required
             />
+            {hasNickNameError && (
+              <p className={styles.error}>{errorNickName}</p>
+            )}
           </div>
         </div>
 
@@ -162,8 +196,10 @@ const HeroFrom = () => {
               onChange={handleReaclNameChange}
               placeholder="Realname"
               className={styles.inputInfo}
-              required
             />
+            {hasRealNameError && (
+              <p className={styles.error}>{errorRealName}</p>
+            )}
           </div>
         </div>
 
@@ -180,8 +216,10 @@ const HeroFrom = () => {
               onChange={handleDescriptionChange}
               placeholder="Origin description"
               className={styles.textareaInfo}
-              required
             />
+            {hasDescriptionError && (
+              <p className={styles.error}>{errorDescription}</p>
+            )}
           </div>
         </div>
 
@@ -198,8 +236,10 @@ const HeroFrom = () => {
               onChange={handleSuperpowerChange}
               placeholder="Superpower"
               className={styles.textareaInfo}
-              required
             />
+            {hasSuperpowerError && (
+              <p className={styles.error}>{errorSuperpower}</p>
+            )}
           </div>
         </div>
 
@@ -216,8 +256,8 @@ const HeroFrom = () => {
               onChange={handlePhraseChange}
               placeholder="Catch phrase"
               className={styles.inputInfo}
-              required
             />
+            {hasPhraseError && <p className={styles.error}>{errorPhrase}</p>}
           </div>
         </div>
 
@@ -230,7 +270,7 @@ const HeroFrom = () => {
               type="file"
               id="photo"
               accept="image/*"
-              // onChange={(e) => setFile(e.target.files?.[0] || null)}
+              onChange={(e) => setFile(e.target.files?.[0] || null)}
             />
           </div>
         </div>
@@ -239,7 +279,9 @@ const HeroFrom = () => {
           <button className={styles.create} type="submit">
             Create
           </button>
-          <button className={styles.clear}>Clear</button>
+          <button className={styles.clear} onClick={handleClear}>
+            Clear
+          </button>
         </div>
       </div>
     </form>
