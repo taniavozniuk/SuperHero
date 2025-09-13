@@ -1,12 +1,52 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+
 export async function GET() {
   try {
-    const heroes = await prisma.superhero.findMany({ include: { images: true } });
+    const heroes = await prisma.superhero.findMany({
+      include: { images: true },
+    });
     return NextResponse.json(heroes);
   } catch (error) {
     console.error("Error fetching heroes:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const {
+      nickname,
+      real_name,
+      origin_description,
+      superpower,
+      catch_phrase,
+      images,
+    } = body;
+
+    const hero = await prisma.superhero.create({
+      data: {
+        nickname,
+        real_name,
+        origin_description,
+        superpower,
+        catch_phrase,
+        images: { create: images || [] },
+      },
+      include: { images: true },
+    });
+
+    return NextResponse.json(hero, { status: 201 });
+  } catch (error) {
+    console.log("error creating hero", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

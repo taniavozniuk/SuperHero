@@ -1,0 +1,68 @@
+.form {
+  width: 454px;
+  background-color: #f6e1c0;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.createHero {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fotmTitle {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.information {
+  font-weight: 700;
+  font-size: 17px;
+}
+.infoBox {
+  margin-top: 5px;
+}
+
+.inputInfo {
+  box-sizing: border-box;
+  width: 100%;
+  height: 31px;
+  border-radius: 8px;
+  border: 1px solid #615b52;
+  padding: 4px;
+}
+
+.textareaInfo {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  border: 1px solid #615b52;
+  padding: 4px;
+  resize: vertical;
+}
+
+.buttonWrap {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.create,
+.clear {
+  width: 100%;
+  border: 1px solid #393126;
+  border-radius: 3px;
+  height: 30px;
+  background-color: #393126;
+  color: #f9f0e2;
+}
+
+.create:hover,
+.clear:hover {
+  border: 1px solid #9b6a00;
+  background-color: #9b6a00;
+}
