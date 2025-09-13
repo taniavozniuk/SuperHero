@@ -1,0 +1,39 @@
+.heroCard {
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.nickName {
+  align-items: center;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  border-radius: 3px;
+  /* border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; */
+}
+
+.buttonWrap{
+  display: flex;
+  gap: 8px;
+}
+
+.details {
+  width: 100%;
+  border: 1px solid #393126;
+  border-radius: 3px;
+  height: 30px;
+  background-color: #393126;
+  color: #f9f0e2;
+}
+
+.details:hover {
+  border: 1px solid #9B6A00;
+  background-color: #9B6A00;
+}

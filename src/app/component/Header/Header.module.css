@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headeTtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.create {
+  width: 100px;
+  height: 51px;
+  border: 1px solid #393126;
+  background-color: #393126;
+  border-radius: 8px;
+  color: #F9F0E2;
+}
+
+.create:hover {
+  border: 1px solid #9B6A00;
+  background-color: #9B6A00;
+}
