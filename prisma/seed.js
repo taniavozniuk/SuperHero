@@ -19,7 +19,6 @@ async function main() {
       },
     },
   });
-  console.log({ superman });
 }
 
 main()

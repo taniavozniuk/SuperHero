@@ -32,7 +32,6 @@ app.post("/superheros", async (req, res) => {
     });
     res.json(hero);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
@@ -44,6 +43,6 @@ app.get("/superheros", async (req, res) => {
   res.json(heros);
 });
 
-app.listen(3000, () => console.log("server running on http://localhost:3000"));
+app.listen(3000, () => console.error("server running on http://localhost:3000"));
 const heroes = await prisma.superhero.findMany();
-console.log(heroes);
+console.error(heroes);

@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(hero, { status: 201 });
   } catch (error) {
-    console.log("error creating hero", error);
+    console.error("error creating hero", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

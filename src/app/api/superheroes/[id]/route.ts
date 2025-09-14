@@ -38,7 +38,7 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return NextResponse.json(
       { err: "Hero not found or could not be deleted" },
       { status: 400 }
@@ -81,7 +81,7 @@ export async function PUT(
 
     return NextResponse.json(updatedHero, { status: 200 });
   } catch (err) {
-    console.log("Error updating hero", err);
+    console.error("Error updating hero", err);
     return NextResponse.json({ err: "Failed to update hero" }, { status: 500 });
   }
 }

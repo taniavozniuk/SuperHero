@@ -44,16 +44,20 @@ Password (save it because you need to use it in the future)
 Port (5432)
 
 2. Creating a database.
-   Open pgAdmin and enter the password (which you created during download) if need. Next, click in the left menu Default Workspace you will see the server. You must right-click on Server and select "Register -> Server". After that, I will show you a window where you need to enter the sevrer name ![pg_hero]({98C25994-1B20-44A0-A388-642CCE483B89}.png) and click button Save.
-   Next, go to Connection and write the host name ![localhost]({5962A80A-7E06-4DA3-986D-9985A6FF4068}.png)
+   Open pgAdmin and enter the password (which you created during download) if need. Next, click in the left menu Default Workspace you will see the server. You must right-click on Server and select "Register -> Server". After that, I will show you a window where you need to enter the sevrer name ![pg_hero](./image/pg_hero.png)
+   and click button Save.
+   Next, go to Connection and write the host name ![localhost](./image/server.png)
    We open "pg_hero" and see Databases (this is the default), we create our own by right-clicking "Create -> Database" name "hero_bd";.
    Open our database, search for the branch "Schemas" and find the table, right-click We create a table "Create -> Table" name "SuperHero".And also the table "SuperHeroImage". Next, right-click on our created table and open View/Edit Data -> All Rows. There will be an empty command line. and there you will need to write.
-   " SELECT \* FROM public."Superhero"
-   ORDER BY id ASC "
+
+```bash
+   SELECT \* FROM public."Superhero"
+   ORDER BY id ASC
+```
 
 3. Synchronizing the database with with the code(Prisma)
 
-In the file ".env" change password to your own.
+You also need to configure the file .env
 And write in the terminal
 
 ```bash

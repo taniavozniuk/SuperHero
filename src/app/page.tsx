@@ -5,7 +5,7 @@ import { Hero } from "@/types/Hero";
 import styles from "./page.module.css";
 import Header from "./component/Header/Header";
 import HeroFrom from "./component/HeroForm/HeroForm";
-import { heroDelet, heroGet } from "./api/superheroes/api";
+import { heroDelete, heroGet } from "./api/superheroes/api";
 
 export default function Home() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -17,7 +17,7 @@ export default function Home() {
       const data = await heroGet();
       setHeroes(data);
     } catch (err) {
-      console.log("error fetching heroes", err);
+      console.error("error fetching heroes", err);
     }
   };
 
@@ -27,7 +27,7 @@ export default function Home() {
 
   const handleDalete = async (id: number) => {
     try {
-      await heroDelet(id);
+      await heroDelete(id);
       setHeroes((prev) => prev.filter((h) => h.id !== id));
     } catch (err) {
       console.error("Failed to delete hero", err);

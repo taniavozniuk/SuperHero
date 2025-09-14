@@ -1,7 +1,7 @@
 import { HeroCreate } from "@/types/HeroCreate";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/api/superheroes";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -15,7 +15,7 @@ export const heroGet = async () => {
     const response = await apiClient.get("");
     return response.data;
   } catch (error) {
-    console.log("get Eroro");
+    console.error("get Eroro");
     throw error;
   }
 };
@@ -31,9 +31,7 @@ export const heroPost = async (heroData: HeroCreate, file?: File | null) => {
     if (file) {
       formData.append("image", file);
     }
-    const response = await axios.post(BASE_URL, formData, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await apiClient.post('', formData);
     return response.data;
   } catch (err) {
     console.error(err);
@@ -41,12 +39,12 @@ export const heroPost = async (heroData: HeroCreate, file?: File | null) => {
   }
 };
 
-export const heroDelet = async (id: number) => {
+export const heroDelete = async (id: number) => {
   try {
     const response = await apiClient.delete(`${id}`);
     return response.data;
   } catch (err) {
-    console.log("Failer to dalete hero", err);
+    console.error("Failer to dalete hero", err);
   }
 };
 
@@ -55,7 +53,7 @@ export const heroUpdate = async (id: number, HeroData: HeroCreate) => {
     const response = await apiClient.put(`${id}`, HeroData);
     return response.data;
   } catch (err) {
-    console.log("Failed to update hero", err);
+    console.error("Failed to update hero", err);
     throw err;
   }
 };
