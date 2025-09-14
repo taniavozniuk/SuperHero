@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./HeroForm.module.css";
 import { heroPost } from "@/app/api/superheroes/api";
-import { HeroCreate } from "@/type/HeroCreate";
+import { HeroCreate } from "@/types/HeroCreate";
 
 interface HeroFromProps {
   setCreate: (value: boolean) => void;

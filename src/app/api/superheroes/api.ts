@@ -1,4 +1,5 @@
-import { HeroCreate } from "@/type/HeroCreate";
+import { Hero } from "@/types/Hero";
+import { HeroCreate } from "@/types/HeroCreate";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3000/api/superheroes";
@@ -9,6 +10,16 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+export const heroGet = async () => {
+  try {
+    const response = await apiClient.get("");
+    return response.data;
+  } catch (error) {
+    console.log("get Eroro");
+    throw error;
+  }
+};
 
 // export const heroPost = async (heroData: HeroCreate, file?: File | null) => {
 //   try {
@@ -43,12 +54,20 @@ export const heroPost = async (heroData: HeroCreate, file?: File | null) => {
       formData.append("image", file);
     }
     const response = await axios.post(BASE_URL, formData, {
-      headers: {
-      },
+      headers: {'Content-Type': 'application/json'},
     });
     return response.data;
   } catch (err) {
     console.error(err);
     throw err;
+  }
+};
+
+export const heroDelet = async (id: number) => {
+  try {
+    const response = await apiClient.delete(`${id}`);
+    return response.data;
+  } catch (err) {
+    console.log("Failer to dalete hero");
   }
 };

@@ -19,19 +19,23 @@
   border-bottom-right-radius: 10px; */
 }
 
-.buttonWrap {
+.wrap {
   display: flex;
   gap: 8px;
 }
 
 .details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  border: 1px solid #393126;
-  border-radius: 3px;
   height: 30px;
   background-color: #393126;
-  text-decoration: none;
+  border: 1px solid #393126;
+  border-radius: 3px;
   color: #f9f0e2;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .details:hover {
@@ -39,3 +43,15 @@
   background-color: #9b6a00;
 }
 
+.delete {
+  width: 50%;
+  border: 1px solid rgb(254, 109, 109);
+  background-color: rgb(254, 109, 109);
+  color: #f9f0e2;
+  border-radius: 3px;
+}
+
+.delete:hover{
+    border: 1px solid red;
+  background-color: red;
+}
