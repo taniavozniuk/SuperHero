@@ -7,9 +7,10 @@ import React from "react";
 interface HeroCardProps {
   hero: Hero;
   onDalete: (id: number) => void;
+  onEdit: (hero: Hero) => void;
 }
 
-const HeroCard: React.FC<HeroCardProps> = ({ hero, onDalete }) => {
+const HeroCard: React.FC<HeroCardProps> = ({ hero, onDalete, onEdit }) => {
   return (
     <div className={styles.heroCard}>
       <h2 className={styles.nickName}>{hero.nickname}</h2>
@@ -20,8 +21,11 @@ const HeroCard: React.FC<HeroCardProps> = ({ hero, onDalete }) => {
         <Link href={`/superheroes/${hero.id}`} className={styles.details}>
           Details
         </Link>
-        <button className={styles.delete} onClick={(id) => onDalete(hero.id)}>
+        <button className={styles.delete} onClick={() => onDalete(hero.id)}>
           Delete
+        </button>
+        <button className={styles.edit} onClick={() => onEdit(hero)}>
+          Edit
         </button>
       </div>
     </div>

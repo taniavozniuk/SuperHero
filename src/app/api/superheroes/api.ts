@@ -1,4 +1,3 @@
-import { Hero } from "@/types/Hero";
 import { HeroCreate } from "@/types/HeroCreate";
 import axios from "axios";
 
@@ -54,7 +53,7 @@ export const heroPost = async (heroData: HeroCreate, file?: File | null) => {
       formData.append("image", file);
     }
     const response = await axios.post(BASE_URL, formData, {
-      headers: {'Content-Type': 'application/json'},
+      headers: { "Content-Type": "application/json" },
     });
     return response.data;
   } catch (err) {
@@ -68,6 +67,16 @@ export const heroDelet = async (id: number) => {
     const response = await apiClient.delete(`${id}`);
     return response.data;
   } catch (err) {
-    console.log("Failer to dalete hero");
+    console.log("Failer to dalete hero", err);
+  }
+};
+
+export const heroUpdate = async (id: number, HeroData: HeroCreate) => {
+  try {
+    const response = await apiClient.put(`${id}`, HeroData);
+    return response.data;
+  } catch (err) {
+    console.log("Failed to update hero", err);
+    throw err;
   }
 };

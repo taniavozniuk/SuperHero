@@ -10,17 +10,18 @@ import { heroDelet, heroGet } from "./api/superheroes/api";
 export default function Home() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
   const [create, setCreate] = useState(false);
+  const [edit, setEdit] = useState<Hero | null>(null);
+
+  const fetchHeroes = async () => {
+    try {
+      const data = await heroGet();
+      setHeroes(data);
+    } catch (err) {
+      console.log("error fetching heroes");
+    }
+  };
 
   useEffect(() => {
-    const fetchHeroes = async () => {
-      try {
-        const data = await heroGet();
-        setHeroes(data);
-      } catch (err) {
-        console.log("error fetching heroes");
-      }
-    };
-
     fetchHeroes();
   }, []);
 
@@ -33,13 +34,30 @@ export default function Home() {
     }
   };
 
+  const handleEdit = (hero: Hero) => {
+    setEdit(hero);
+    setCreate(true);
+  };
+
   return (
     <div className={styles.pageCard}>
       <Header setCreate={setCreate} />
-      {create && <HeroFrom setCreate={setCreate} />}
+      {create && (
+        <HeroFrom
+          setCreate={setCreate}
+          fetchHero={fetchHeroes}
+          edit={edit}
+          setEdit={() => setEdit(null)}
+        />
+      )}
       <div className={styles.cardConteiner}>
         {heroes.map((hero) => (
-          <HeroCard key={hero.id} hero={hero} onDalete={handleDalete} />
+          <HeroCard
+            key={hero.id}
+            hero={hero}
+            onDalete={handleDalete}
+            onEdit={handleEdit}
+          />
         ))}
       </div>
     </div>

@@ -38,9 +38,50 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (err) {
+    console.log(err)
     return NextResponse.json(
       { err: "Hero not found or could not be deleted" },
       { status: 400 }
     );
+  }
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const body = await request.json();
+    const {
+      nickname,
+      real_name,
+      origin_description,
+      superpower,
+      catch_phrase,
+      images,
+    } = body;
+
+    const updatedHero = await prisma.superhero.update({
+      where: { id: Number(params.id) },
+      data: {
+        nickname,
+        real_name,
+        origin_description,
+        superpower,
+        catch_phrase,
+        images: images
+          ? {
+              deleteMany: {}, // видаляю старі
+              create: images,
+            }
+          : undefined,
+      },
+      include: { images: true },
+    });
+
+    return NextResponse.json(updatedHero, { status: 200 });
+  } catch (err) {
+    console.log("Error updating hero", err);
+    return NextResponse.json({ err: "Failed to update hero" }, { status: 500 });
   }
 }

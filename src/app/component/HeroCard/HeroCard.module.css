@@ -51,7 +51,20 @@
   border-radius: 3px;
 }
 
-.delete:hover{
-    border: 1px solid red;
+.delete:hover {
+  border: 1px solid red;
   background-color: red;
+}
+
+.edit {
+  width: 30%;
+  border: 1px solid rgb(254, 174, 109);
+  background-color: rgb(254, 174, 109);
+  color: #f9f0e2;
+  border-radius: 3px;
+}
+
+.edit:hover {
+  background-color: #393126;
+  border: 1px solid #393126;
 }
