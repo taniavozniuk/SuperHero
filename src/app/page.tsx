@@ -17,7 +17,7 @@ export default function Home() {
       const data = await heroGet();
       setHeroes(data);
     } catch (err) {
-      console.log("error fetching heroes");
+      console.log("error fetching heroes", err);
     }
   };
 
