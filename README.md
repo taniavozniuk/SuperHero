@@ -1,6 +1,9 @@
 ## SuperHero
 
-The project was implemented according to the requirements, except for uploading and editing photos. A database was also created in PostgresSQL, but unfortunately I was unable to host it, so I wrote down all the detailed information on how to run (create) the project locally.
+The project was implemented according to the requirements, except for uploading and editing photos. A database was also created in PostgresSQL, but unfortunately I was unable to host it, so I wrote down all the detailed information on how to run (create) the project locally.I am also attaching a video of how it works.[video]()
+
+More details about the project, all heroes are displayed on the main page, there is also a button to create a hero, when you click on it, a form is displayed. The form must be filled out (except for the photo), and the create button must be clicked. After creating the hero, the hero will be displayed on the page. The hero can be deleted, edited and detailed information about him can be viewed.
+When editing, the creation form will open again, where the previous information about the hero will be visible. When you update it, click the update button and it will be updated. After clicking the detailed information button, you will be taken to a separate page for this hero, where you can go back.
 
 To set up the project, use these instructions for setting up the project locally:
 
@@ -54,7 +57,7 @@ In the file ".env" change password to your own.
 And write in the terminal
 
 ```bash
- "npx prisma migrate dev --name init".
+ npx prisma migrate dev --name init.
 ```
 
 This will create the table through Prisma, the code is already written, you just need to run the command.

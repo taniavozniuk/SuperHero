@@ -71,7 +71,7 @@ export async function PUT(
         catch_phrase,
         images: images
           ? {
-              deleteMany: {}, // видаляю старі
+              deleteMany: {},
               create: images,
             }
           : undefined,

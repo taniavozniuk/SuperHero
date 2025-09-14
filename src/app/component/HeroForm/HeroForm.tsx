@@ -35,7 +35,6 @@ const HeroFrom: React.FC<HeroFromProps> = ({
     handlePhraseChange,
     hasPhraseError,
     errorPhrase,
-    // file,
     setFile,
     handleCreate,
     handleClear,
@@ -52,7 +51,6 @@ const HeroFrom: React.FC<HeroFromProps> = ({
           }}
         >
           x
-          {/* <img src={Close.src} alt="close" className={styles.closeIcon} /> */}
         </button>
       </div>
 
