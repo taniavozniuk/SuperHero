@@ -9,7 +9,7 @@ interface HeroPageProps {
 }
 
 export default async function HeroPage({ params }: HeroPageProps) {
-    const { id } = await params;
+    const { id } = params;
   const hero = await prisma.superhero.findUnique({
     where: { id: Number(id) },
     include: { images: true },

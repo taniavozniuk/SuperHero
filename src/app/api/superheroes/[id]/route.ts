@@ -6,7 +6,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const { id } = params;
   try {
     const heroes = await prisma.superhero.findUnique({
       where: { id: Number(id) },
@@ -30,7 +30,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const { id } = params;
   try {
     await prisma.superhero.delete({
       where: { id: Number(id) },
@@ -52,7 +52,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const { id } = params;
   try {
     const body = await request.json();
     const {
