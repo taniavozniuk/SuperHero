@@ -50,23 +50,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-// export async function DELETE(
-//   request: Request,
-//   { params }: { params: { id: string } }
-// ) {
-//   try {
-//     await prisma.superhero.delete({
-//       where: { id: Number(params.id) },
-//     });
-//     return NextResponse.json(
-//       { message: "Hero deleted successfully" },
-//       { status: 200 }
-//     );
-//   } catch (err) {
-//     return NextResponse.json(
-//       { err: "Hero not found or could not be deleted" },
-//       { status: 400 }
-//     );
-//   }
-// }

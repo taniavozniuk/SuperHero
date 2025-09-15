@@ -1,14 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+type Params = {
+  params: { id: string };
+};
+
+export async function GET(request: NextRequest, { params }: Params) {
+  const { id } = await params;
   try {
     const heroes = await prisma.superhero.findUnique({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
       include: { images: true },
     });
 
@@ -25,20 +27,18 @@ export async function GET(
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, { params }: Params) {
+  const { id } = await params;
   try {
     await prisma.superhero.delete({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
     });
     return NextResponse.json(
       { message: "Hero deleted successfully" },
       { status: 200 }
     );
   } catch (err) {
-    console.error(err)
+    console.error(err);
     return NextResponse.json(
       { err: "Hero not found or could not be deleted" },
       { status: 400 }
@@ -46,10 +46,8 @@ export async function DELETE(
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest, { params }: Params) {
+  const { id } = await params;
   try {
     const body = await request.json();
     const {
@@ -62,7 +60,7 @@ export async function PUT(
     } = body;
 
     const updatedHero = await prisma.superhero.update({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
       data: {
         nickname,
         real_name,
